@@ -15,7 +15,9 @@ class NavigationImageView : UIImageView{
 
 class HomeViewController: UIViewController {
 
-    override func viewDidLoad() {
+   @IBOutlet weak var cardView: UIView!
+   
+   override func viewDidLoad() {
         super.viewDidLoad()
       
       //add image navigation view, (top)
@@ -23,8 +25,16 @@ class HomeViewController: UIViewController {
       tittleView.image = UIImage(named: "Actions")
       self.navigationItem.titleView = tittleView
 
+      //Reconize gestures in the cardView
+      let homeGR = UIPanGestureRecognizer(target: self, action: #selector(cardDragged(gestureRecognizer:)))
+      self.cardView.addGestureRecognizer(homeGR)
         // Do any additional setup after loading the view.
     }
+   
+   //funtion recognizer drag
+   @objc func cardDragged(gestureRecognizer : UIPanGestureRecognizer){
+      print("DRAG")
+   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
