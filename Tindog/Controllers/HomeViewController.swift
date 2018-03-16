@@ -36,6 +36,15 @@ class HomeViewController: UIViewController {
    @objc func cardDragged(gestureRecognizer : UIPanGestureRecognizer){
       let cardPoint = gestureRecognizer.translation(in: view)
       self.cardView.center = CGPoint(x: self.view.bounds.width / 2 + cardPoint.x , y: self.view.bounds.height / 2 + cardPoint.y)
+      
+      //animation rotate
+      let xFromCenter = self.view.bounds.width / 2 - self.cardView.center.x
+      var rotate = CGAffineTransform(rotationAngle: xFromCenter / 200)
+      let scale = min(100 / abs(xFromCenter), 1)
+      var finalTransform = rotate.scaledBy(x: scale, y: scale)
+      
+      self.cardView.transform = finalTransform
+      
       if gestureRecognizer.state == .ended{
          if self.cardView.center.x < (self.view.bounds.width / 2 - 100){
             print("dislike")
@@ -43,6 +52,11 @@ class HomeViewController: UIViewController {
          if self.cardView.center.x > (self.view.bounds.width / 2 + 100){
             print("like")
          }
+         
+         //restar img
+         rotate = CGAffineTransform(rotationAngle: 0)
+         finalTransform  = rotate.scaledBy(x: 1, y: 1)
+         self.cardView.transform = finalTransform
          self.cardView.center = CGPoint(x: self.homeWrapper.bounds.width / 2 , y: (self.homeWrapper.bounds.height / 2 - 30) )
       }
    }
