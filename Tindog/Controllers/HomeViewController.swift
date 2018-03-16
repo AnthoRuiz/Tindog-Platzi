@@ -33,7 +33,16 @@ class HomeViewController: UIViewController {
    
    //funtion recognizer drag
    @objc func cardDragged(gestureRecognizer : UIPanGestureRecognizer){
-      print("DRAG")
+      let cardPoint = gestureRecognizer.translation(in: view)
+      self.cardView.center = CGPoint(x: self.view.bounds.width / 2 + cardPoint.x , y: self.view.bounds.height / 2 + cardPoint.y)
+      if gestureRecognizer.state == .ended{
+         if self.cardView.center.x < (self.view.bounds.width / 2 - 100){
+            print("dislike")
+         }
+         if self.cardView.center.x > (self.view.bounds.width / 2 + 100){
+            print("like")
+         }
+      }
    }
 
     override func didReceiveMemoryWarning() {
