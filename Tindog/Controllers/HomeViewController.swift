@@ -15,6 +15,7 @@ class NavigationImageView : UIImageView{
 
 class HomeViewController: UIViewController {
 
+   @IBOutlet weak var homeWrapper: UIStackView!
    @IBOutlet weak var cardView: UIView!
    
    override func viewDidLoad() {
@@ -42,6 +43,7 @@ class HomeViewController: UIViewController {
          if self.cardView.center.x > (self.view.bounds.width / 2 + 100){
             print("like")
          }
+         self.cardView.center = CGPoint(x: self.homeWrapper.bounds.width / 2 , y: (self.homeWrapper.bounds.height / 2 - 30) )
       }
    }
 
