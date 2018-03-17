@@ -43,6 +43,20 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like_image" translatesAutoresizingMaskIntoConstraints="NO" id="htr-Fu-5U2">
+                                                <rect key="frame" x="25" y="25" width="158" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="7jb-3R-duX"/>
+                                                    <constraint firstAttribute="width" constant="158" id="VRA-d8-MjP"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nope_image" translatesAutoresizingMaskIntoConstraints="NO" id="LNU-LY-Ibb">
+                                                <rect key="frame" x="168" y="25" width="158" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="3wP-ob-DGo"/>
+                                                    <constraint firstAttribute="width" constant="158" id="xUm-vC-OEi"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -55,8 +69,12 @@
                                             <constraint firstAttribute="width" secondItem="HNJ-gf-A49" secondAttribute="height" multiplier="352:503" id="T4U-FA-kj1"/>
                                             <constraint firstItem="44z-cw-z36" firstAttribute="top" secondItem="HNJ-gf-A49" secondAttribute="top" id="TXh-rz-d54"/>
                                             <constraint firstAttribute="trailing" secondItem="frV-JW-mfQ" secondAttribute="trailing" constant="12" id="TqK-j5-Cct"/>
+                                            <constraint firstItem="LNU-LY-Ibb" firstAttribute="top" secondItem="HNJ-gf-A49" secondAttribute="top" constant="25" id="UbV-1T-ANs"/>
+                                            <constraint firstItem="htr-Fu-5U2" firstAttribute="leading" secondItem="HNJ-gf-A49" secondAttribute="leading" constant="25" id="aA9-fq-UVo"/>
                                             <constraint firstAttribute="trailing" secondItem="44z-cw-z36" secondAttribute="trailing" id="g5h-08-Rf2"/>
                                             <constraint firstAttribute="trailing" secondItem="YHD-Vr-aFY" secondAttribute="trailing" constant="14" id="hrj-XM-ace"/>
+                                            <constraint firstAttribute="trailing" secondItem="LNU-LY-Ibb" secondAttribute="trailing" constant="25" id="sR0-Zl-RSj"/>
+                                            <constraint firstItem="htr-Fu-5U2" firstAttribute="top" secondItem="HNJ-gf-A49" secondAttribute="top" constant="25" id="x3A-m9-vVy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3up-co-iGN" userLabel="Buttons">
@@ -112,6 +130,8 @@
                     <connections>
                         <outlet property="cardView" destination="HNJ-gf-A49" id="n62-60-Bj5"/>
                         <outlet property="homeWrapper" destination="7TL-u3-pHW" id="uL6-D5-H2i"/>
+                        <outlet property="likeImage" destination="htr-Fu-5U2" id="6YJ-YV-mm0"/>
+                        <outlet property="nopeImage" destination="LNU-LY-Ibb" id="709-7R-ozh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -145,5 +165,7 @@
         <image name="Super Like" width="51" height="51"/>
         <image name="Swipe Card" width="356" height="507"/>
         <image name="crispeta" width="1080" height="1079"/>
+        <image name="like_image" width="170" height="114"/>
+        <image name="nope_image" width="197" height="130"/>
     </resources>
 </document>
