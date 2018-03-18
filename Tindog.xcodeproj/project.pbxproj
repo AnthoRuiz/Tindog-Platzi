@@ -13,6 +13,7 @@
 		2BADF83C205AF47300C1138D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BADF83A205AF47300C1138D /* LaunchScreen.storyboard */; };
 		2BD91636205C150F009775FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD91635205C150F009775FE /* HomeViewController.swift */; };
 		2BD91638205DD65F009775FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD91637205DD65F009775FE /* LoginViewController.swift */; };
+		2BD9163B205DEF1A009775FE /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9163A205DEF1A009775FE /* UIViewExt.swift */; };
 		CE5693A1D7D38AC816FDE17B /* Pods_Tindog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007E0766CEAE492D403BAE23 /* Pods_Tindog.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		2BADF83D205AF47300C1138D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BD91635205C150F009775FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2BD91637205DD65F009775FE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2BD9163A205DEF1A009775FE /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		51BA5F86EA67D603DB72763F /* Pods-Tindog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tindog.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tindog/Pods-Tindog.debug.xcconfig"; sourceTree = "<group>"; };
 		D90730A9E4F88EC6828CDFEC /* Pods-Tindog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tindog.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tindog/Pods-Tindog.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 		2BADF830205AF47300C1138D /* Tindog */ = {
 			isa = PBXGroup;
 			children = (
+				2BD91639205DEEEE009775FE /* Extensions */,
 				2BD91634205C14B0009775FE /* Controllers */,
 				2BADF831205AF47300C1138D /* AppDelegate.swift */,
 				2BADF835205AF47300C1138D /* Main.storyboard */,
@@ -89,6 +92,14 @@
 				2BD91637205DD65F009775FE /* LoginViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2BD91639205DEEEE009775FE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2BD9163A205DEF1A009775FE /* UIViewExt.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B962F6EE1AE4A693E7321E85 /* Frameworks */ = {
@@ -230,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BD9163B205DEF1A009775FE /* UIViewExt.swift in Sources */,
 				2BD91638205DD65F009775FE /* LoginViewController.swift in Sources */,
 				2BADF832205AF47300C1138D /* AppDelegate.swift in Sources */,
 				2BD91636205C150F009775FE /* HomeViewController.swift in Sources */,

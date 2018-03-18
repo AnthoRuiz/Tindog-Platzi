@@ -10,14 +10,30 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    override func viewDidLoad() {
+   //close modal del login
+   @IBAction func closeBtn(_ sender: Any) {
+      dismiss(animated: true, completion: nil)
+      
+   }
+   override func viewDidLoad() {
         super.viewDidLoad()
+      
+      //move view when keyboard is open
+      self.view.bindKeyboard()
+      let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+      self.view.addGestureRecognizer(tap)
 
         // Do any additional setup after loading the view.
     }
+   
+   //close the keyboard
+   @objc func handleTap(sender: UITapGestureRecognizer){
+      self.view.endEditing(true)
+   }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+      
         // Dispose of any resources that can be recreated.
     }
     

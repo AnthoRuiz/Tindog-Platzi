@@ -151,6 +151,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dA-gq-okV">
+                                <rect key="frame" x="15" y="30" width="23" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="23" id="FSm-H8-RKj"/>
+                                    <constraint firstAttribute="height" constant="23" id="pzZ-rH-ToM"/>
+                                </constraints>
+                                <state key="normal" image="close_modal"/>
+                                <connections>
+                                    <action selector="closeBtn:" destination="ODy-Sq-9xh" eventType="touchUpInside" id="tkI-6S-lsx"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Iyh-AP-Hbh">
                                 <rect key="frame" x="50" y="122" width="275" height="423"/>
                                 <subviews>
@@ -251,7 +262,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Iyh-AP-Hbh" firstAttribute="centerX" secondItem="4B2-xW-XDw" secondAttribute="centerX" id="2j7-MA-jkc"/>
+                            <constraint firstItem="6dA-gq-okV" firstAttribute="top" secondItem="CCE-ea-Aem" secondAttribute="top" constant="10" id="7m0-aN-9TL"/>
                             <constraint firstItem="Iyh-AP-Hbh" firstAttribute="centerY" secondItem="4B2-xW-XDw" secondAttribute="centerY" id="hN3-BM-k2J"/>
+                            <constraint firstItem="6dA-gq-okV" firstAttribute="leading" secondItem="CCE-ea-Aem" secondAttribute="leading" constant="15" id="wkm-05-OuJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CCE-ea-Aem"/>
                     </view>
@@ -286,6 +299,7 @@
         <image name="Rewind" width="51" height="51"/>
         <image name="Super Like" width="51" height="51"/>
         <image name="Swipe Card" width="356" height="507"/>
+        <image name="close_modal" width="23" height="23"/>
         <image name="crispeta" width="1080" height="1079"/>
         <image name="like_image" width="170" height="114"/>
         <image name="login_btn_bg" width="256" height="65"/>
