@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RevealingSplashView
+
 class NavigationImageView : UIImageView{
    override func sizeThatFits(_ size: CGSize) -> CGSize {
       return CGSize(width: 76, height: 39)
@@ -19,9 +21,19 @@ class HomeViewController: UIViewController {
    @IBOutlet weak var cardView: UIView!
    @IBOutlet weak var likeImage: UIImageView!
    @IBOutlet weak var nopeImage: UIImageView!
+   let leftBtn = UIButton(type: .custom)
+   
+   //splash screen
+   let revealingSplashScreen = RevealingSplashView(iconImage: UIImage(named:"splash_icon")!, iconInitialSize: CGSize(width:80, height:80), backgroundColor: UIColor.white)
    
    override func viewDidLoad() {
         super.viewDidLoad()
+      
+      //add splash screen
+      self.view.addSubview(self.revealingSplashScreen)
+      
+      self.revealingSplashScreen.animationType = SplashAnimationType.popAndZoomOut
+      self.revealingSplashScreen.startAnimation()
       
       //add image navigation view, (top)
       let tittleView = NavigationImageView()
@@ -31,8 +43,23 @@ class HomeViewController: UIViewController {
       //Reconize gestures in the cardView
       let homeGR = UIPanGestureRecognizer(target: self, action: #selector(cardDragged(gestureRecognizer:)))
       self.cardView.addGestureRecognizer(homeGR)
+      
+      
+      //add left button for open login
+      self.leftBtn.setImage(UIImage(named:"login"), for: .normal)
+      leftBtn.imageView?.contentMode = .scaleAspectFit
+      leftBtn.addTarget(self, action: #selector(goToLogin(sender:)), for: .touchUpInside)
+      let leftBarButton = UIBarButtonItem(customView: leftBtn)
+      self.navigationItem.leftBarButtonItem = leftBarButton
         // Do any additional setup after loading the view.
     }
+   
+   //go to login at click
+   @objc func goToLogin(sender: UIButton){
+      let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      let loginViewController = storyBoard.instantiateViewController(withIdentifier: "loginVC")
+      present(loginViewController, animated: true, completion: nil)
+   }
    
    //funtion recognizer drag
    @objc func cardDragged(gestureRecognizer : UIPanGestureRecognizer){
