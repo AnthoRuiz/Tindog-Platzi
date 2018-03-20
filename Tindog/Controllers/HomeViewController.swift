@@ -8,6 +8,7 @@
 
 import UIKit
 import RevealingSplashView
+import Firebase
 
 class NavigationImageView : UIImageView{
    override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController {
    @IBOutlet weak var likeImage: UIImageView!
    @IBOutlet weak var nopeImage: UIImageView!
    let leftBtn = UIButton(type: .custom)
+   var currentUserProfile: UserModel?
    
    //splash screen
    let revealingSplashScreen = RevealingSplashView(iconImage: UIImage(named:"splash_icon")!, iconInitialSize: CGSize(width:80, height:80), backgroundColor: UIColor.white)
@@ -46,11 +48,14 @@ class HomeViewController: UIViewController {
       
       
       //add left button for open login
-      self.leftBtn.setImage(UIImage(named:"login"), for: .normal)
-      leftBtn.imageView?.contentMode = .scaleAspectFit
-      leftBtn.addTarget(self, action: #selector(goToLogin(sender:)), for: .touchUpInside)
+      self.leftBtn.imageView?.contentMode = .scaleAspectFit
       let leftBarButton = UIBarButtonItem(customView: leftBtn)
       self.navigationItem.leftBarButtonItem = leftBarButton
+      
+      //call to userprofile modal
+      DataBaseService.instance.observeUserProfile { (userDict) in
+         self.currentUserProfile = userDict
+      }
         // Do any additional setup after loading the view.
     }
    
@@ -59,6 +64,14 @@ class HomeViewController: UIViewController {
       let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
       let loginViewController = storyBoard.instantiateViewController(withIdentifier: "loginVC")
       present(loginViewController, animated: true, completion: nil)
+   }
+   
+   //go to Profile at click
+   @objc func goToProfile(sender: UIButton){
+      let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      let profileViewController = storyBoard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
+      profileViewController.currentUserProfile = self.currentUserProfile
+      self.navigationController?.pushViewController(profileViewController, animated: true)
    }
    
    //funtion recognizer drag
@@ -97,6 +110,18 @@ class HomeViewController: UIViewController {
          self.cardView.center = CGPoint(x: self.homeWrapper.bounds.width / 2 , y: (self.homeWrapper.bounds.height / 2 - 30) )
          self.likeImage.alpha = 0
          self.nopeImage.alpha = 0
+      }
+   }
+   
+   override func viewDidAppear(_ animated: Bool) {
+      if Auth.auth().currentUser != nil {
+         self.leftBtn.setImage(UIImage(named:"login_active"), for: .normal)
+         self.leftBtn.removeTarget(nil, action: nil, for: .allEvents)
+         self.leftBtn.addTarget(self, action: #selector(goToProfile(sender:)), for: .touchUpInside)
+      }else{
+         self.leftBtn.setImage(UIImage(named:"login"), for: .normal)
+         self.leftBtn.removeTarget(nil, action: nil, for: .allEvents)
+         self.leftBtn.addTarget(self, action: #selector(goToLogin(sender:)), for: .touchUpInside)
       }
    }
 
