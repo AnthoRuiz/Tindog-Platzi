@@ -11,6 +11,8 @@
 		2B38D16C20606967007D6428 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38D16B20606967007D6428 /* ProfileViewController.swift */; };
 		2B38D16F20608AB9007D6428 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38D16E20608AB9007D6428 /* UserModel.swift */; };
 		2B38D1712060931B007D6428 /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38D1702060931B007D6428 /* UIImageExt.swift */; };
+		2BA610AA2061F3620073C007 /* MatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA610A92061F3620073C007 /* MatchModel.swift */; };
+		2BA610AC2061F4780073C007 /* UpdateDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA610AB2061F4780073C007 /* UpdateDBService.swift */; };
 		2BADF832205AF47300C1138D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BADF831205AF47300C1138D /* AppDelegate.swift */; };
 		2BADF837205AF47300C1138D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BADF835205AF47300C1138D /* Main.storyboard */; };
 		2BADF839205AF47300C1138D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BADF838205AF47300C1138D /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 		2B38D16B20606967007D6428 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2B38D16E20608AB9007D6428 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2B38D1702060931B007D6428 /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
+		2BA610A92061F3620073C007 /* MatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchModel.swift; sourceTree = "<group>"; };
+		2BA610AB2061F4780073C007 /* UpdateDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDBService.swift; sourceTree = "<group>"; };
 		2BADF82E205AF47300C1138D /* Tindog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tindog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BADF831205AF47300C1138D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BADF836205AF47300C1138D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				2B38D169205EEE71007D6428 /* DataBaseService.swift */,
+				2BA610AB2061F4780073C007 /* UpdateDBService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -75,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				2B38D16E20608AB9007D6428 /* UserModel.swift */,
+				2BA610A92061F3620073C007 /* MatchModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -285,9 +291,11 @@
 				2B38D16F20608AB9007D6428 /* UserModel.swift in Sources */,
 				2BD9163B205DEF1A009775FE /* UIViewExt.swift in Sources */,
 				2BD91638205DD65F009775FE /* LoginViewController.swift in Sources */,
+				2BA610AC2061F4780073C007 /* UpdateDBService.swift in Sources */,
 				2BADF832205AF47300C1138D /* AppDelegate.swift in Sources */,
 				2B38D1712060931B007D6428 /* UIImageExt.swift in Sources */,
 				2B38D16A205EEE71007D6428 /* DataBaseService.swift in Sources */,
+				2BA610AA2061F3620073C007 /* MatchModel.swift in Sources */,
 				2BD91636205C150F009775FE /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

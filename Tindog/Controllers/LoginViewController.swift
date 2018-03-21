@@ -62,12 +62,11 @@ class LoginViewController: UIViewController {
                      }else{
                         print("cuenta Creada")
                         if let user = user {
-                           let userData = ["provider": user.providerID, "email": user.email!, "profileImage": "https://i.imgur.com/j877JeB.jpg", "displayName": "Jakaboy"] as [String: Any]
+                           print(user)
+                           let userData = ["provider": user.providerID, "email": user.email!, "profileImage": "https://i.imgur.com/j877JeB.jpg", "displayName": "Jakaboy", "userIsOnMatch": false] as [String: Any]
                            
                            DataBaseService.instance.createFirebaseDBUser(uid: user.uid, userData: userData)
                         }
-                        
-                        
                      }
                   })
                }else{
@@ -75,7 +74,7 @@ class LoginViewController: UIViewController {
                      if error != nil{
                         self.showAlert(title: "Error", message: error!.localizedDescription)
                      }else{
-                        print("login Correcto")
+                        print("Login Correcto")
                         self.dismiss(animated: true, completion: nil)
                      }
                   })

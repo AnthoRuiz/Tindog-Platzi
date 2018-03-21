@@ -133,6 +133,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="kDZ-ct-csf"/>
                     <connections>
+                        <outlet property="cardProfileImage" destination="frV-JW-mfQ" id="AvF-LT-nDJ"/>
+                        <outlet property="cardProfileName" destination="YHD-Vr-aFY" id="MxJ-L9-98L"/>
                         <outlet property="cardView" destination="HNJ-gf-A49" id="n62-60-Bj5"/>
                         <outlet property="homeWrapper" destination="7TL-u3-pHW" id="uL6-D5-H2i"/>
                         <outlet property="likeImage" destination="htr-Fu-5U2" id="6YJ-YV-mm0"/>
@@ -363,6 +365,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJW-jR-Lhf">
+                                <rect key="frame" x="70" y="479" width="218" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="importar usuarios"/>
+                                <connections>
+                                    <action selector="importUserAction:" destination="cFI-Gv-lvH" eventType="touchUpInside" id="FD8-TO-QZn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

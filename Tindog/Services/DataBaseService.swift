@@ -17,6 +17,7 @@ class DataBaseService{
    
    private let _Base_Ref = DB_BASE_ROOT
    private let _User_Ref = DB_BASE_ROOT.child("users")
+   private let _Match_Ref = DB_BASE_ROOT.child("match")
    
    var Base_Ref: DatabaseReference{
       return DB_BASE_ROOT
@@ -24,6 +25,10 @@ class DataBaseService{
    
    var User_Ref: DatabaseReference{
       return _User_Ref
+   }
+   
+   var Match_Ref: DatabaseReference{
+      return _Match_Ref
    }
    
    func observeUserProfile(handler: @escaping(_ userProfileDict: UserModel?) -> Void){
@@ -38,5 +43,9 @@ class DataBaseService{
    
    func createFirebaseDBUser(uid: String, userData: Dictionary<String, Any>){
       User_Ref.child(uid).updateChildValues(userData)
+   }
+   
+   func createFirebaseDBMatch(uid: String, uid2: String){
+      Match_Ref.child(uid).updateChildValues(["uid2": uid2, "matchIsAccepted": false])
    }
 }

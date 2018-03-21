@@ -18,12 +18,16 @@ class NavigationImageView : UIImageView{
 
 class HomeViewController: UIViewController {
 
+   @IBOutlet weak var cardProfileName: UILabel!
+   @IBOutlet weak var cardProfileImage: UIImageView!
    @IBOutlet weak var homeWrapper: UIStackView!
    @IBOutlet weak var cardView: UIView!
    @IBOutlet weak var likeImage: UIImageView!
    @IBOutlet weak var nopeImage: UIImageView!
    let leftBtn = UIButton(type: .custom)
    var currentUserProfile: UserModel?
+   var users = [UserModel]()
+   var seconUserUID : String?
    
    //splash screen
    let revealingSplashScreen = RevealingSplashView(iconImage: UIImage(named:"splash_icon")!, iconInitialSize: CGSize(width:80, height:80), backgroundColor: UIColor.white)
@@ -52,10 +56,25 @@ class HomeViewController: UIViewController {
       let leftBarButton = UIBarButtonItem(customView: leftBtn)
       self.navigationItem.leftBarButtonItem = leftBarButton
       
-      //call to userprofile modal
-      DataBaseService.instance.observeUserProfile { (userDict) in
-         self.currentUserProfile = userDict
+      //check if the user is log in
+      Auth.auth().addStateDidChangeListener { (auth, user) in
+         if let user = user {
+            print("usuario inicio correctamente")
+         }else{
+            print("logout")
+         }
+         
+         //call to userprofile modal
+         DataBaseService.instance.observeUserProfile { (userDict) in
+            self.currentUserProfile = userDict
+         }
+         self.getUsers()
       }
+      
+      UpdateDBService.instance.observeMatch { (matchDict) in
+         print("update match")
+      }
+      
         // Do any additional setup after loading the view.
     }
    
@@ -72,6 +91,31 @@ class HomeViewController: UIViewController {
       let profileViewController = storyBoard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
       profileViewController.currentUserProfile = self.currentUserProfile
       self.navigationController?.pushViewController(profileViewController, animated: true)
+   }
+   
+   func getUsers(){
+      DataBaseService.instance.User_Ref.observeSingleEvent(of: .value) { (snapshot) in
+         let userSnapshot = snapshot.children.flatMap{ UserModel(snapshot: $0 as! DataSnapshot)}
+         for user in userSnapshot{
+            print("user: \(user.email)")
+            self.users.append(user)
+         }
+         if self.users.count > 0{
+            self.updateImage(uid: (self.users.first?.uid)!)
+            
+         }
+      }
+
+   }
+   
+   func updateImage(uid: String){
+      DataBaseService.instance.User_Ref.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+         if let userProfile = UserModel(snapshot: snapshot){
+            self.seconUserUID = userProfile.uid
+            self.cardProfileImage.sd_setImage(with: URL(string: userProfile.profileImage), completed: nil)
+            self.cardProfileName.text = userProfile.displayName
+         }
+      }
    }
    
    //funtion recognizer drag
@@ -101,7 +145,18 @@ class HomeViewController: UIViewController {
          }
          if self.cardView.center.x > (self.view.bounds.width / 2 + 100){
             print("like")
+            //match
+            if let uid2 = self.seconUserUID{
+               DataBaseService.instance.createFirebaseDBMatch(uid: self.currentUserProfile!.uid, uid2: uid2)
+            }
+            
          }
+         
+         //update image
+         if self.users.count > 0{
+            self.updateImage(uid: self.users[self.random(0..<self.users.count)].uid)
+         }
+         
          
          //restar card view
          rotate = CGAffineTransform(rotationAngle: 0)
@@ -125,6 +180,10 @@ class HomeViewController: UIViewController {
       }
    }
 
+   //random for img
+   func random(_ range: Range<Int>) -> Int {
+      return range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound)))
+   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
