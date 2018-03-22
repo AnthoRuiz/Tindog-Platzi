@@ -20,17 +20,62 @@ class MatchViewController: UIViewController {
    
    
    @IBAction func doneBtnAction(_ sender: Any) {
-      
+      if let currentMatch = self.currentMatch{
+         if currentMatch.matchIsAccepted{
+            let share = [self.view.screenshot(), "Acabo de crear una aplicación en iOS! Este es mi proyecto del curso en @Platzi, te invito conocerlo:", "platzi.com/ios"] as [Any]
+            let activityViewController = UIActivityViewController(activityItems: share, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+            
+         }else{
+            DataBaseService.instance.updateFirebaseDBMatch(uid: currentMatch.uid)
+            self.dismiss(animated: true, completion: nil)
+         }
+      }
    }
    
    
    override func viewDidLoad() {
         super.viewDidLoad()
+      
       if let match = self.currentMatch{
-         print("------match:---------- \(match)")
+         print("match:\(match)")
          if let profile = self.currentUserProfile{
-            self.secondUserMatchImage.sd_setImage(with: URL(string:profile.profileImage), completed: nil)
-            self.secondUserMatchImage.round()
+            var secondID: String = ""
+            if profile.uid == match.uid{
+               secondID = match.uid2
+            }else{
+               secondID = match.uid
+            }
+            
+            DataBaseService.instance.getUserProfile(uid: secondID, handler: { (secondUser) in
+               if let secondUser = secondUser{
+                  if profile.uid == match.uid{
+                     // init match
+                     self.firstUserMatchImage.sd_setImage(with: URL(string:profile.profileImage), completed: nil)
+                     self.firstUserMatchImage.round()
+                     self.secondUserMatchImage.sd_setImage(with: URL(string:secondUser.profileImage), completed: nil)
+                     self.secondUserMatchImage.round()
+                     self.copyMatchLbl.text = "Esperando a \(secondUser.displayName)"
+                     self.doneBtn.alpha = 0
+                     
+                  }else{
+                     // match
+                     self.firstUserMatchImage.sd_setImage(with: URL(string:secondUser.profileImage), completed: nil)
+                     self.firstUserMatchImage.round()
+                     self.secondUserMatchImage.sd_setImage(with: URL(string:profile.profileImage), completed: nil)
+                     self.secondUserMatchImage.round()
+                     self.copyMatchLbl.text = "Tu mascota le gusta a  \(secondUser.displayName)"
+                     self.doneBtn.alpha = 1
+                  }
+                  if match.matchIsAccepted{
+                     self.copyMatchLbl.text = "\(profile.displayName) y \(secondUser.displayName) quieren conocerse "
+                     self.doneBtn.setTitle("Compartir", for: .normal)
+                     self.doneBtn.alpha = 1
+                  }
+               }
+            })
+            
          }
       }
 

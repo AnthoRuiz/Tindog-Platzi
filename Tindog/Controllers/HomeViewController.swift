@@ -69,23 +69,21 @@ class HomeViewController: UIViewController {
          //call to userprofile modal
          DataBaseService.instance.observeUserProfile { (userDict) in
             self.currentUserProfile = userDict
+            UpdateDBService.instance.observeMatch(handler: { (matchDict) in
+               if let match = matchDict{
+                  if let user = self.currentUserProfile{
+                     if user.userIsOnMatch == false{
+                        print("tienes un match")
+                        self.currentMatch = match
+                        self.changeRightBtn(active: true)
+                     }
+                  }
+               }else{
+                  self.changeRightBtn(active: false)
+               }
+            })
          }
          self.getUsers()
-      }
-      
-      UpdateDBService.instance.observeMatch { (matchDict) in
-         if let match = matchDict{
-            // user 2
-            if let user = self.currentUserProfile{
-               if user.userIsOnMatch == false{
-                  print("tienes un match")
-                  self.currentMatch = match
-                  self.changeRightBtn(active: true)
-               }
-            }
-         }else{
-            self.changeRightBtn(active: false)
-         }
       }
      
       self.rightBtn.imageView?.contentMode = .scaleAspectFit
@@ -136,8 +134,10 @@ class HomeViewController: UIViewController {
       DataBaseService.instance.User_Ref.observeSingleEvent(of: .value) { (snapshot) in
          let userSnapshot = snapshot.children.flatMap{ UserModel(snapshot: $0 as! DataSnapshot)}
          for user in userSnapshot{
-            print("user: \(user.email)")
-            self.users.append(user)
+            //print("user: \(user.email)")
+            if self.currentUserProfile?.uid != user.uid{
+               self.users.append(user)
+            }
          }
          if self.users.count > 0{
             self.updateImage(uid: (self.users.first?.uid)!)

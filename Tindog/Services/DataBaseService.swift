@@ -45,7 +45,19 @@ class DataBaseService{
       User_Ref.child(uid).updateChildValues(userData)
    }
    
+   func updateFirebaseDBMatch(uid: String){
+      Match_Ref.child(uid).updateChildValues(["matchIsAccepted": true])
+   }
+   
    func createFirebaseDBMatch(uid: String, uid2: String){
       Match_Ref.child(uid).updateChildValues(["uid2": uid2, "matchIsAccepted": false])
+   }
+   
+   func getUserProfile(uid: String, handler: @escaping(_ profileDict: UserModel?) -> Void){
+      DataBaseService.instance.User_Ref.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+         if let profileDict = UserModel(snapshot: snapshot){
+            handler(profileDict)
+         }
+      }
    }
 }
