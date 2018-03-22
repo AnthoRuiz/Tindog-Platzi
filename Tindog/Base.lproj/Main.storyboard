@@ -11,8 +11,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica-Bold</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
+        </array>
+        <array key="Noteworthy.ttc">
+            <string>Noteworthy-Bold</string>
         </array>
     </customFonts>
     <scenes>
@@ -331,6 +338,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_bg" translatesAutoresizingMaskIntoConstraints="NO" id="ZvN-WQ-e3A">
                                 <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="78f-PA-RW3">
                                 <rect key="frame" x="60" y="50" width="255" height="328"/>
@@ -396,6 +404,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2C-k4-Mw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2100" y="144.3778110944528"/>
+        </scene>
+        <!--Match View Controller-->
+        <scene sceneID="ERA-9C-K6u">
+            <objects>
+                <viewController storyboardIdentifier="matchVC" id="KnQ-jU-Ww3" customClass="MatchViewController" customModule="Tindog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6U6-78-Ivo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2fg-SL-G6Z">
+                                <rect key="frame" x="22.5" y="110" width="330" height="447.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sYG-PU-7RY">
+                                        <rect key="frame" x="47.5" y="0.0" width="235" height="160"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Its a Match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogU-J2-T1B">
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="235" id="CRw-HX-Nnd"/>
+                                                    <constraint firstAttribute="height" constant="80" id="nHy-VM-bup"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="50"/>
+                                                <color key="textColor" red="1" green="0.12927685350000001" blue="0.1702801139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tu Mascota le Gusta Crispeta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4j-Xj-efm">
+                                                <rect key="frame" x="0.0" y="80" width="235" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="235" id="NJ3-Jg-PRQ"/>
+                                                    <constraint firstAttribute="height" constant="80" id="Pha-wC-w2c"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="110" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-dw-D0Q">
+                                        <rect key="frame" x="0.0" y="192.5" width="330" height="110"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YcL-RI-MpT">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="110" id="3sh-4R-e7x"/>
+                                                    <constraint firstAttribute="height" constant="110" id="F7U-Pz-Noc"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lh1-rG-DOl">
+                                                <rect key="frame" x="220" y="0.0" width="110" height="110"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="110" id="OC0-sz-ZPq"/>
+                                                    <constraint firstAttribute="width" constant="110" id="Y8K-aM-gTd"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPI-XF-J1c">
+                                        <rect key="frame" x="37" y="382.5" width="256" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="256" id="ng7-To-XJz"/>
+                                            <constraint firstAttribute="height" constant="65" id="py6-Vg-YjW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                        <state key="normal" title="Aceptar" backgroundImage="login_btn_bg">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneBtnAction:" destination="KnQ-jU-Ww3" eventType="touchUpInside" id="K7i-3S-nYf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2fg-SL-G6Z" firstAttribute="top" secondItem="rHS-0I-qk3" secondAttribute="top" constant="90" id="5oq-cA-keV"/>
+                            <constraint firstItem="rHS-0I-qk3" firstAttribute="bottom" secondItem="2fg-SL-G6Z" secondAttribute="bottom" constant="109.5" id="K7X-BF-NrI"/>
+                            <constraint firstItem="2fg-SL-G6Z" firstAttribute="top" secondItem="rHS-0I-qk3" secondAttribute="top" constant="90" id="LfA-s6-UqQ"/>
+                            <constraint firstItem="2fg-SL-G6Z" firstAttribute="leading" secondItem="rHS-0I-qk3" secondAttribute="leading" constant="22.5" id="Rua-gO-RB3"/>
+                            <constraint firstItem="2fg-SL-G6Z" firstAttribute="centerX" secondItem="6U6-78-Ivo" secondAttribute="centerX" id="XPf-vR-sFl"/>
+                            <constraint firstItem="2fg-SL-G6Z" firstAttribute="centerY" secondItem="6U6-78-Ivo" secondAttribute="centerY" id="pA3-nV-HRX"/>
+                            <constraint firstItem="rHS-0I-qk3" firstAttribute="trailing" secondItem="2fg-SL-G6Z" secondAttribute="trailing" constant="22.5" id="w4R-Ln-Gb2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rHS-0I-qk3"/>
+                    </view>
+                    <connections>
+                        <outlet property="copyMatchLbl" destination="C4j-Xj-efm" id="P0A-bl-kNl"/>
+                        <outlet property="doneBtn" destination="iPI-XF-J1c" id="fCp-b4-P7w"/>
+                        <outlet property="firstUserMatchImage" destination="YcL-RI-MpT" id="Bho-AP-iNO"/>
+                        <outlet property="secondUserMatchImage" destination="Lh1-rG-DOl" id="b5a-Yz-h35"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PIL-cF-LnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2892" y="149.77511244377811"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aDH-aj-Deg">

@@ -24,10 +24,12 @@ class HomeViewController: UIViewController {
    @IBOutlet weak var cardView: UIView!
    @IBOutlet weak var likeImage: UIImageView!
    @IBOutlet weak var nopeImage: UIImageView!
-   let leftBtn = UIButton(type: .custom)
    var currentUserProfile: UserModel?
+   var currentMatch: MatchModel?
    var users = [UserModel]()
    var seconUserUID : String?
+   let leftBtn = UIButton(type: .custom)
+   let rightBtn = UIButton(type: .custom)
    
    //splash screen
    let revealingSplashScreen = RevealingSplashView(iconImage: UIImage(named:"splash_icon")!, iconInitialSize: CGSize(width:80, height:80), backgroundColor: UIColor.white)
@@ -72,11 +74,38 @@ class HomeViewController: UIViewController {
       }
       
       UpdateDBService.instance.observeMatch { (matchDict) in
-         print("update match")
+         if let match = matchDict{
+            // user 2
+            if let user = self.currentUserProfile{
+               if user.userIsOnMatch == false{
+                  print("tienes un match")
+                  self.currentMatch = match
+                  self.changeRightBtn(active: true)
+               }
+            }
+         }else{
+            self.changeRightBtn(active: false)
+         }
       }
+     
+      self.rightBtn.imageView?.contentMode = .scaleAspectFit
+      let rigthtBarButton = UIBarButtonItem(customView: rightBtn)
+      self.navigationItem.rightBarButtonItem = rigthtBarButton
+      
       
         // Do any additional setup after loading the view.
     }
+   
+   func changeRightBtn(active: Bool){
+      if active{
+         self.rightBtn.setImage(UIImage(named:"match_active"), for: .normal)
+         self.rightBtn.addTarget(self, action: #selector(goToMatch(sender:)), for: .touchUpInside)
+      }else {
+         self.rightBtn.removeTarget(nil, action: nil, for: .allEvents)
+         self.rightBtn.setImage(UIImage(named:"match_inactive"), for: .normal)
+         
+      }
+   }
    
    //go to login at click
    @objc func goToLogin(sender: UIButton){
@@ -91,6 +120,16 @@ class HomeViewController: UIViewController {
       let profileViewController = storyBoard.instantiateViewController(withIdentifier: "profileVC") as! ProfileViewController
       profileViewController.currentUserProfile = self.currentUserProfile
       self.navigationController?.pushViewController(profileViewController, animated: true)
+   }
+   
+   //go to match at click
+   @objc func goToMatch(sender: UIButton){
+      let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+      let matchViewController = storyBoard.instantiateViewController(withIdentifier: "matchVC") as! MatchViewController
+      matchViewController.currentUserProfile = self.currentUserProfile
+      matchViewController.currentMatch = self.currentMatch
+      //matchViewController.lastImage = self.view.screenshot()
+      present(matchViewController, animated: true, completion: nil)
    }
    
    func getUsers(){
